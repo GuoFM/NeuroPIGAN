@@ -1,0 +1,43 @@
+seed: 42
+device: auto
+
+data:
+  root: data
+  seq_len: 2048
+  sample_rate_hz: 30000
+  batch_size: 32
+  num_workers: 2
+  use_synthetic_if_empty: true
+
+model:
+  latent_dim: 64
+  hidden_dim: 256
+  num_layers: 5
+  activation: 'sine'   # 'relu' | 'gelu' | 'sine'
+
+gan:
+  epochs: 50
+  d_iters: 5
+  g_iters: 1
+  lr_g: 2.0e-4
+  lr_d: 2.0e-4
+  betas: [0.5, 0.9]
+  lambda_gp: 10.0
+  ema_decay: 0.999
+
+physics:
+  weight_bandlimit: 1.0
+  passband_hz: [300, 6000]
+  weight_smoothness: 0.5
+  weight_amplitude: 0.5
+  amplitude_range: [-300e-6, 300e-6]  # Volts
+  weight_sparsity: 0.25
+
+logging:
+  log_every_steps: 50
+  sample_every_steps: 200
+  ckpt_every_epochs: 5
+  log_dir: logs
+  output_dir: outputs
+
+
